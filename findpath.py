@@ -82,6 +82,17 @@ def read_input_file(filename):
         delivery_locations = [loc.strip() for loc in lines[2].split(':')[1].split(',')]
     return delivery_algorithm, start_location, delivery_locations
 
+def arrange_delivery_requests(delivery_locations, ward_priorities):
+    delivery_queue = PriorityQueue.PriorityQueue()
+    for location in delivery_locations:
+        ward_priority = ward_priorities.get(location)
+        if ward_priority is not None:
+            delivery_queue.put((ward_priority, location))
+        else:
+            print(f"No priority assigned for location: {location}")
+    return delivery_queue
+
+
 def main():
     if len(sys.argv) != 2:
         print("Usage: python FindPath.py inputfile.txt")
@@ -130,6 +141,21 @@ def main():
         'Medical Ward': 2, 'General Ward': 2,
         'Admissions': 1, 'Isolation Ward': 1
     }
+    
+    delivery_queue = arrange_delivery_requests(delivery_locations, ward_priorities)
+    
+    current_location = start_location
+    while not delivery_queue.empty():
+        _, next_location = delivery_queue.get()
+        path = find_optimum_path(graph, current_location, next_location, delivery_algorithm)
+        if path:
+            print(f"Optimum path from {current_location} to {next_location}: {path}")
+            current_location = next_location
+        else:
+            print(f"Warning: No path found from {current_location} to {next_location}. Terminating...")
+            break
+    else:
+        print("All delivery requests successfully completed.")
 
 
     def find_optimum_path(graph, start, goal, algorithm):
@@ -154,25 +180,6 @@ def main():
             # Continue with similar conditions for priorities 3, 2, and 1
         else:
             print(f"No priority assigned for location: {location}")
-
-def create_graph(hospital_path):
-    graph = Graph()
-    # Create nodes and edges based on hospital path
-    rows = len(hospital_path)
-    cols = len(hospital_path[0])
-    for i in range(rows):
-        for j in range(cols):
-            if hospital_path[i][j] == 1:
-                graph.add_node((i, j))
-                if i > 0 and hospital_path[i - 1][j] == 1:
-                    graph.add_edge((i, j), (i - 1, j), 1)
-                if i < rows - 1 and hospital_path[i + 1][j] == 1:
-                    graph.add_edge((i, j), (i + 1, j), 1)
-                if j > 0 and hospital_path[i][j - 1] == 1:
-                    graph.add_edge((i, j), (i, j - 1), 1)
-                if j < cols - 1 and hospital_path[i][j + 1] == 1:
-                    graph.add_edge((i, j), (i, j + 1), 1)
-    return graph
 
 if __name__ == "__main__":
     main()
