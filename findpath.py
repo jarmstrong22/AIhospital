@@ -74,13 +74,34 @@ def dijkstra(graph, start, goal):
     
     return None  # No path found
 
+
 def read_input_file(filename):
     with open(filename, 'r') as file:
         lines = file.readlines()
-        delivery_algorithm = lines[0].split(':')[1].strip()
-        start_location = lines[1].split(':')[1].strip()
-        delivery_locations = [loc.strip() for loc in lines[2].split(':')[1].split(',')]
+        # Extract delivery algorithm, start location, and delivery locations
+        delivery_algorithm = None
+        start_location = None
+        delivery_locations = []
+
+        for line in lines:
+            if line.startswith('Delivery algorithm:'):
+                delivery_algorithm = line.split(':')[1].strip()
+            elif line.startswith('Start location:'):
+                start_location_str = line.split(':')[1].strip()
+                # Correctly parse the start location string
+                start_location = tuple(map(int, start_location_str.split(',')))
+            elif line.startswith('Delivery locations:'):
+                delivery_locations_str = line.split(':')[1].strip()
+                # Correctly parse the delivery locations string
+                delivery_locations = [loc.strip() for loc in delivery_locations_str.split(',')]
+
+        if delivery_algorithm is None or start_location is None or not delivery_locations:
+            raise ValueError("Input file format is incorrect.")
+
     return delivery_algorithm, start_location, delivery_locations
+
+
+
 
 def arrange_delivery_requests(delivery_locations, ward_priorities):
     delivery_queue = PriorityQueue.PriorityQueue()
@@ -141,7 +162,7 @@ def main():
         'Medical Ward': 2, 'General Ward': 2,
         'Admissions': 1, 'Isolation Ward': 1
     }
-    
+
     delivery_queue = arrange_delivery_requests(delivery_locations, ward_priorities)
     
     current_location = start_location
