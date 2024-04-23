@@ -83,10 +83,16 @@ def read_input_file(filename):
     return delivery_algorithm, start_location, delivery_locations
 
 def main():
-    delivery_algorithm = a_star
+    if len(sys.argv) != 2:
+        print("Usage: python FindPath.py inputfile.txt")
+        return
+    
     filename = sys.argv[1]
-    hospital_path = read_hospital_path(filename)
-    delivery_algorithm, start_location, delivery_locations = read_input_file(sys.argv[2])
+    delivery_algorithm, start_location, delivery_locations = read_input_file(filename)
+    
+    print("Delivery Algorithm:", delivery_algorithm)
+    print("Start Location:", start_location)
+    print("Delivery Locations:", delivery_locations)
     
     # Create the hospital graph and define edges and weights
     graph = [
@@ -116,60 +122,38 @@ def main():
         [0, -1, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12, 12, 12, 10, 10, 11, 11, 11, 10, 10, 10, 10, -1, 0],
         [0, -1, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12, 12, 12, 10, 10, 11, 11, 11, 10, 10, 10, 10, -1, 0]
     ]
-    
-    # Create a priority queue for delivery requests
-    delivery_queue = PriorityQueue()
-    for location in delivery_locations:
-        priority = get_priority(location)
-        delivery_queue.put((priority, location))
-    
-    current_location = start_location
-    while not delivery_queue.empty():
-        _, next_location = delivery_queue.get()
-        path = find_optimum_path(graph, current_location, next_location, delivery_algorithm)
-        if path:
-            print(f"Optimum path from {current_location} to {next_location}: {path}")
-            current_location = next_location
-        else:
-            print(f"Warning: No path found from {current_location} to {next_location}. Terminating...")
-            break
-    else:
-        print("All delivery requests successfully completed.")
 
-def read_hospital_path(filename):
-    with open(filename, 'r') as file:
-        hospital_path = [list(map(int, line.strip())) for line in file]
-    return hospital_path
-
-def get_priority(location):
-    # Define priorities based on the location
-    priority_map = {
-        "ICU": 5,
-        "ER": 5,
-        "Oncology": 5,
-        "Burn Ward": 5,
-        "Surgical Ward": 4,
-        "Maternity Ward": 4,
-        "Hematology": 3,
-        "Pediatric Ward": 3,
-        "Medical Ward": 2,
-        "General Ward": 2,
-        "Admissions": 1,
-        "Isolation Ward": 1
+    ward_priorities = {
+        'ICU': 5, 'ER': 5, 'Oncology': 5, 'Burn Ward': 5,
+        'Surgical Ward': 4, 'Maternity Ward': 4,
+        'Hematology': 3, 'Pediatric Ward': 3,
+        'Medical Ward': 2, 'General Ward': 2,
+        'Admissions': 1, 'Isolation Ward': 1
     }
-    for ward, priority in priority_map.items():
-        if ward in location:
-            return priority
-    return 0
 
-def find_optimum_path(graph, start, goal, algorithm):
-    if algorithm == 'A*':
-        return a_star(graph, start, goal)
-    elif algorithm == 'Dijkstra':
-        return dijkstra(graph, start, goal)
-    else:
-        print("Invalid delivery algorithm specified in the input file.")
-        return None
+
+    def find_optimum_path(graph, start, goal, algorithm):
+        if algorithm == 'A*':
+            return a_star(graph, start, goal)
+        elif algorithm == 'Dijkstra':
+            return dijkstra(graph, start, goal)
+        else:
+            print("Invalid delivery algorithm specified in the input file.")
+            return None
+    for location in delivery_locations:
+        # Assume location is a string representing the delivery location
+        ward_priority = ward_priorities.get(location)
+        if ward_priority is not None:
+            # Assign the ward based on the priority
+            if ward_priority == 5:
+                # Assign to ICU, ER, Oncology, or Burn Ward
+                pass  # Add your code to assign the delivery to the corresponding ward
+            elif ward_priority == 4:
+                # Assign to Surgical Ward or Maternity Ward
+                pass  # Add your code to assign the delivery to the corresponding ward
+            # Continue with similar conditions for priorities 3, 2, and 1
+        else:
+            print(f"No priority assigned for location: {location}")
 
 def create_graph(hospital_path):
     graph = Graph()
