@@ -280,7 +280,7 @@ def main():
             return None
 
     # Try to visit all the delivery locations in the sorted_delivery_locations graph 
-    def visit_delivery_locations(sorted_delivery_locations, ward_coordinate_map, current_location):
+    def visit_delivery_locations(sorted_delivery_locations, ward_coordinate_map, current_location, final_path):
         for location in sorted_delivery_locations:
             coordinates = ward_coordinate_map.get(location)
             if coordinates:
@@ -288,6 +288,7 @@ def main():
                 path = find_optimum_path(graph, current_location, next_location, delivery_algorithm)
                 if path:
                     print(f"Path found from {current_location} to {next_location}: {path}")
+                    final_path.extend(path)
                     current_location = next_location  # Update the current location
                 else:
                     print(f"Warning: No path found from {current_location} to {next_location}.")
@@ -296,9 +297,13 @@ def main():
                 print(f"Warning: No coordinates found for location: {location}")
                 return  # Break out of the loop if no coordinates are found
         print("All delivery locations visited successfully.")
+        print("The final path is: ", final_path)
+        return final_path
     
+    # Create final_path list 
+    final_path = []
     # Attempt to visit all the delivery locations
-    visit_delivery_locations(sorted_delivery_locations, ward_coordinate_map, start_location)
+    visit_delivery_locations(sorted_delivery_locations, ward_coordinate_map, start_location, final_path)
 
 if __name__ == "__main__":
     main()
