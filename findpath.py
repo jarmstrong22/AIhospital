@@ -1,6 +1,10 @@
 import heapq
 import sys
+import tkinter as tk
+from PIL import ImageTk, Image, ImageOps 
+from queue import PriorityQueue
 import queue as PriorityQueue
+from queue import PriorityQueue
 
 class Graph:
     def __init__(self):
@@ -19,10 +23,15 @@ class Graph:
         self.edges[to_node].append((from_node, weight))  # Assuming bidirectional edges
     
     def get_neighbors(self, node):
-        return self.edges[node]
+        neighbors = []
+        for neighbor, weight in self.edges[node]:
+            if weight != -1:
+                neighbors.append((neighbor, weight))
+        return neighbors
 
-def heuristic(self, pos):
-        return (abs(pos[0] - self.goal_pos[0]) + abs(pos[1] - self.goal_pos[1]))
+def heuristic(start, goal):
+    return (abs(start[0] - goal[0]) + abs(start[1] - goal[1]))
+
 
 def reconstruct_path(came_from, current):
     total_path = [current]
@@ -114,6 +123,7 @@ def arrange_delivery_requests(delivery_locations, ward_priorities):
     return delivery_queue
 
 
+
 def main():
     if len(sys.argv) != 2:
         print("Usage: python FindPath.py inputfile.txt")
@@ -127,7 +137,7 @@ def main():
     print("Delivery Locations:", delivery_locations)
     
     # Create the hospital graph and define edges and weights
-    graph = [
+    matrix = [
         [0, -1, 1, 1, 1, 1, 1, 1, 1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, -1, 1, 1, 1, 1, 1, 1, 1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, -1, 1, 1, 1, 1, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -154,6 +164,21 @@ def main():
         [0, -1, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12, 12, 12, 10, 10, 11, 11, 11, 10, 10, 10, 10, -1, 0],
         [0, -1, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12, 12, 12, 10, 10, 11, 11, 11, 10, 10, 10, 10, -1, 0]
     ]
+    graph = Graph()
+
+    # Assuming your graph data is defined as a list of lists
+    for row_index, row in enumerate(matrix):
+        for col_index, cell_value in enumerate(row):
+            if cell_value != -1:
+                graph.add_node((row_index, col_index))
+
+                # Add edges for adjacent cells (assuming 4-directional movement)
+                for dr, dc in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
+                    new_row = row_index + dr
+                    new_col = col_index + dc
+                    if 0 <= new_row < len(matrix) and 0 <= new_col < len(matrix[0]):
+                        if matrix[new_row][new_col] != -1:
+                            graph.add_edge((row_index, col_index), (new_row, new_col), 1)  # Assuming uniform weight for edges
 
     ward_priorities = {
         'ICU': 5, 'ER': 5, 'Oncology': 5, 'Burn Ward': 5,
@@ -162,23 +187,79 @@ def main():
         'Medical Ward': 2, 'General Ward': 2,
         'Admissions': 1, 'Isolation Ward': 1
     }
+    ward_assignments = { 
+        'ICU': 8, 'ER': 4, 'Oncology': 5, 'Burn Ward': 6,
+        'Maternity Ward': 1, 'Surgical Ward': 10, 
+        'Hematology': 13, 'Pediatric Ward': 12,
+        'Medical Ward': 11, 'General Ward': 2,
+        'Admissions': 7, 'Isolation Ward': 3
 
-    delivery_queue = arrange_delivery_requests(delivery_locations, ward_priorities)
+    }
+    def create_ward_coordinate_map(matrix):
+        ward_coordinate_map = {
+            'ICU': [],
+            'ER': [],
+            'Oncology': [],
+            'Burn Ward': [],
+            'Maternity Ward': [],
+            'Surgical Ward': [],
+            'Hematology': [],
+            'Pediatric Ward': [],
+            'Medical Ward': [],
+            'General Ward': [],
+            'Admissions': [],
+            'Isolation Ward': [], 
+            'Wall': [], 
+            'Hallway': []
+        }
+
+        for i, row in enumerate(matrix):
+            for j, ward in enumerate(row):
+                if ward == 8:
+                    ward_coordinate_map['ICU'].append((i, j))
+                elif ward == 0: 
+                    ward_coordinate_map['Hallway'].append((i,j))
+                elif ward == -1: 
+                    ward_coordinate_map['Wall'].append((i,j))
+                elif ward == 4:
+                    ward_coordinate_map['ER'].append((i, j))
+                elif ward == 5:
+                    ward_coordinate_map['Oncology'].append((i, j))
+                elif ward == 6:
+                    ward_coordinate_map['Burn Ward'].append((i, j))
+                elif ward == 1:
+                    ward_coordinate_map['Maternity Ward'].append((i, j))
+                elif ward == 10:
+                    ward_coordinate_map['Surgical Ward'].append((i, j))
+                elif ward == 13:
+                    ward_coordinate_map['Hematology'].append((i, j))
+                elif ward == 12:
+                    ward_coordinate_map['Pediatric Ward'].append((i, j))
+                elif ward == 11:
+                    ward_coordinate_map['Medical Ward'].append((i, j))
+                elif ward == 2:
+                    ward_coordinate_map['General Ward'].append((i, j))
+                elif ward == 7:
+                    ward_coordinate_map['Admissions'].append((i, j))
+                elif ward == 3:
+                    ward_coordinate_map['Isolation Ward'].append((i, j))
+
+        return ward_coordinate_map
     
-    current_location = start_location
-    while not delivery_queue.empty():
-        _, next_location = delivery_queue.get()
-        path = find_optimum_path(graph, current_location, next_location, delivery_algorithm)
-        if path:
-            print(f"Optimum path from {current_location} to {next_location}: {path}")
-            current_location = next_location
-        else:
-            print(f"Warning: No path found from {current_location} to {next_location}. Terminating...")
-            break
-    else:
-        print("All delivery requests successfully completed.")
+    # Create ward_coordinate_map
+    ward_coordinate_map = create_ward_coordinate_map(matrix)
 
+    # Create a list of tuples containing location name and priority
+    location_priority_pairs = [(location, ward_priorities.get(location, 0)) for location in delivery_locations]
+    
+    # Sort the list based on priority (descending order) and original order
+    sorted_location_priority_pairs = sorted(location_priority_pairs, key=lambda x: (-x[1], delivery_locations.index(x[0])))
+    
+    # Extract sorted location names
+    sorted_delivery_locations = [pair[0] for pair in sorted_location_priority_pairs]
+    print("Delivery locations based on priorities:", sorted_delivery_locations)
 
+    # Define function to get the optimum path
     def find_optimum_path(graph, start, goal, algorithm):
         if algorithm == 'A*':
             return a_star(graph, start, goal)
@@ -187,20 +268,27 @@ def main():
         else:
             print("Invalid delivery algorithm specified in the input file.")
             return None
-    for location in delivery_locations:
-        # Assume location is a string representing the delivery location
-        ward_priority = ward_priorities.get(location)
-        if ward_priority is not None:
-            # Assign the ward based on the priority
-            if ward_priority == 5:
-                # Assign to ICU, ER, Oncology, or Burn Ward
-                pass  # Add your code to assign the delivery to the corresponding ward
-            elif ward_priority == 4:
-                # Assign to Surgical Ward or Maternity Ward
-                pass  # Add your code to assign the delivery to the corresponding ward
-            # Continue with similar conditions for priorities 3, 2, and 1
-        else:
-            print(f"No priority assigned for location: {location}")
+
+    # Try to visit all the delivery locations in the sorted_delivery_locations graph 
+    def visit_delivery_locations(sorted_delivery_locations, ward_coordinate_map, current_location):
+        for location in sorted_delivery_locations:
+            coordinates = ward_coordinate_map.get(location)
+            if coordinates:
+                next_location = coordinates[0]  # Choose the first coordinate as the next location
+                path = find_optimum_path(graph, current_location, next_location, delivery_algorithm)
+                if path:
+                    print(f"Path found from {current_location} to {next_location}: {path}")
+                    current_location = next_location  # Update the current location
+                else:
+                    print(f"Warning: No path found from {current_location} to {next_location}.")
+                    return  # Break out of the loop if no path is found
+            else:
+                print(f"Warning: No coordinates found for location: {location}")
+                return  # Break out of the loop if no coordinates are found
+        print("All delivery locations visited successfully.")
+    
+    # Attempt to visit all the delivery locations
+    visit_delivery_locations(sorted_delivery_locations, ward_coordinate_map, start_location)
 
 if __name__ == "__main__":
     main()
