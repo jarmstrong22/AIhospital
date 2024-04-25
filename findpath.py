@@ -91,6 +91,7 @@ def read_input_file(filename):
         delivery_algorithm = None
         start_location = None
         delivery_locations = []
+        obstacle = None
 
         for line in lines:
             if line.startswith('Delivery algorithm:'):
@@ -103,11 +104,15 @@ def read_input_file(filename):
                 delivery_locations_str = line.split(':')[1].strip()
                 # Correctly parse the delivery locations string
                 delivery_locations = [loc.strip() for loc in delivery_locations_str.split(',')]
+            elif line.startswith('Obstacle:'):
+                obstacle_str = line.split(':')[1].strip()
+                if obstacle_str:
+                    obstacle = tuple(map(int, obstacle_str.split(',')))
 
         if delivery_algorithm is None or start_location is None or not delivery_locations:
             raise ValueError("Input file format is incorrect.")
 
-    return delivery_algorithm, start_location, delivery_locations
+    return delivery_algorithm, start_location, delivery_locations, obstacle
 
 
 
@@ -130,11 +135,15 @@ def main():
         return
     
     filename = sys.argv[1]
-    delivery_algorithm, start_location, delivery_locations = read_input_file(filename)
+    delivery_algorithm, start_location, delivery_locations, obstacle = read_input_file(filename)
     
     print("Delivery Algorithm:", delivery_algorithm)
     print("Start Location:", start_location)
     print("Delivery Locations:", delivery_locations)
+    if obstacle is None:
+        print("No obstacle specified.")
+    else:
+        print("Obstacle location:", obstacle)
     
     # Create the hospital graph and define edges and weights
     matrix = [
@@ -169,14 +178,15 @@ def main():
     # Assuming your graph data is defined as a list of lists
     for row_index, row in enumerate(matrix):
         for col_index, cell_value in enumerate(row):
-            if cell_value != -1:
+            if cell_value != -1 and (obstacle is None or (row_index, col_index) != obstacle):
                 graph.add_node((row_index, col_index))
 
                 # Add edges for adjacent cells (assuming 4-directional movement)
                 for dr, dc in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
                     new_row = row_index + dr
                     new_col = col_index + dc
-                    if 0 <= new_row < len(matrix) and 0 <= new_col < len(matrix[0]):
+                    # Check if the new cell is within bounds and is not an obstacle or is not equal to the obstacle coordinate if defined
+                    if 0 <= new_row < len(matrix) and 0 <= new_col < len(matrix[0]) and (obstacle is None or (new_row, new_col) != obstacle):
                         if matrix[new_row][new_col] != -1:
                             graph.add_edge((row_index, col_index), (new_row, new_col), 1)  # Assuming uniform weight for edges
 
