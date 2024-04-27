@@ -1,9 +1,10 @@
 import tkinter as tk
 
 class MazeGame:
-    def __init__(self, root, maze):
+    def __init__(self, root, maze, path=[]):
         self.root = root
         self.maze = maze
+        self.path = path
         
         self.rows = len(maze)
         self.cols = len(maze[0])
@@ -46,7 +47,7 @@ class MazeGame:
                     color = self.color_mapping.get(self.maze[x][y], '#FFFFFF')  # Default to white
 
                 # If the cell coordinate is in last_coordinates, set its color to black
-                if (x, y) in self.last_coordinates:
+                if (x, y) in self.path:
                     color = '#000000'
                 
                 # Draw cell rectangle
@@ -94,7 +95,7 @@ class MazeGame:
                 x2, y2 = self.path[i + 1]
                 self.canvas.create_line(y1 * self.cell_size + self.cell_size / 2, x1 * self.cell_size + self.cell_size / 2,
                                         y2 * self.cell_size + self.cell_size / 2, x2 * self.cell_size + self.cell_size / 2,
-                                        fill='red', width=2)
+                                        fill='black', width=2)
 
 maze = [
         [0, -1, 1, 1, 1, 1, 1, 1, 1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
