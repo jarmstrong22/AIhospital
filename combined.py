@@ -192,10 +192,12 @@ def main():
                     new_col = col_index + dc
                     # Check if the new cell is within bounds and is not an obstacle or is not equal to the obstacle coordinate if defined
                     if 0 <= new_row < len(matrix) and 0 <= new_col < len(matrix[0]) and (obstacle is None or (new_row, new_col) != obstacle):
-                        if matrix[new_row][new_col] in valid_values:
+                        neighbor_value = matrix[new_row][new_col]
+                        if neighbor_value in valid_values:
                             graph.add_edge((row_index, col_index), (new_row, new_col), 1)  # Assuming uniform weight for edges
-
-
+        
+    
+    
     ward_priorities = {
         'ICU': 5, 'ER': 5, 'Oncology': 5, 'Burn Ward': 5,
         'Surgical Ward': 4, 'Maternity Ward': 4,
