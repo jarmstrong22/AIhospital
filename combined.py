@@ -29,7 +29,7 @@ class Graph:
     def get_neighbors(self, node):
         neighbors = []
         for neighbor, weight in self.edges[node]:
-            if weight in [-1121,-121,-21,-2121,0,-12,-122,-212,-6,3,4,5,7,8,10,11,12,13]:
+            if weight in [-1121,-121,-21,-2121,0,-12,-122,-212,-6,3,4,5,7,8,10,11,12,13,1]:
                 neighbors.append((neighbor, weight))
         return neighbors
 
