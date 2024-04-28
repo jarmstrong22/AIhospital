@@ -296,29 +296,6 @@ def main():
             print("Invalid delivery algorithm specified in the input file.")
             return None
 
-    def visit_delivery_locations(sorted_delivery_locations, ward_coordinate_map, current_location, final_path):
-        for location in sorted_delivery_locations:
-            coordinates = ward_coordinate_map.get(location)
-            if coordinates:
-                # Iterate through all coordinates associated with the current location (ward)
-                path_found = False
-                for next_location in coordinates:
-                    # Check if there is a path from the current location to the next coordinate
-                    path = find_optimum_path(graph, current_location, next_location, delivery_algorithm)
-                    if path:
-                        print(f"Path found from {current_location} to {next_location}: {path}")
-                        final_path.extend(path)
-                        current_location = next_location  # Update the current location
-                        path_found = True
-                        break  # Exit the loop if a path is found
-                if not path_found:
-                    print(f"Warning: No path found from {current_location} to any coordinates of {location}.")
-            else:
-                print(f"Warning: No coordinates found for location: {location}")
-        print("All delivery locations visited successfully.")
-        print("The final path is: ", final_path)
-        return final_path
-   
     root = tk.Tk()
     maze = matrix
 
@@ -334,6 +311,36 @@ def main():
     cell_size = 20
     canvas = tk.Canvas(root, width=cols * cell_size, height=rows * cell_size, bg='white')
     canvas.pack()
+
+    def visit_delivery_locations(sorted_delivery_locations, ward_coordinate_map, current_location, final_path):
+        delivery_count = 0
+        for location in sorted_delivery_locations:
+            coordinates = ward_coordinate_map.get(location)
+            if coordinates:
+                # Iterate through all coordinates associated with the current location (ward)
+                path_found = False
+                for next_location in coordinates:
+                    # Check if there is a path from the current location to the next coordinate
+                    path = find_optimum_path(graph, current_location, next_location, delivery_algorithm)
+                    if path:
+                        print(f"Path found from {current_location} to {next_location}: {path}")
+                        final_path.extend(path)
+                        current_location = next_location  # Update the current location
+                        path_found = True
+                        x, y = current_location
+                        canvas.create_text(y * cell_size + cell_size / 2, x * cell_size + cell_size / 2,
+                                        text=str(delivery_count), fill='black', font=('Arial', 10, 'bold'))
+                        break  # Exit the loop if a path is found
+                if not path_found:
+                    print(f"Warning: No path found from {current_location} to any coordinates of {location}.")
+            else:
+                print(f"Warning: No coordinates found for location: {location}")
+        if (final_path):
+            print("All delivery locations visited successfully.")
+        print("The final path is: ", final_path)
+        return final_path
+   
+   
     
 
     
