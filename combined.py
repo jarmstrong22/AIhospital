@@ -285,23 +285,25 @@ def main():
             print("Invalid delivery algorithm specified in the input file.")
             return None
 
-    # Try to visit all the delivery locations in the sorted_delivery_locations graph 
     def visit_delivery_locations(sorted_delivery_locations, ward_coordinate_map, current_location, final_path):
         for location in sorted_delivery_locations:
             coordinates = ward_coordinate_map.get(location)
             if coordinates:
-                next_location = coordinates[0]  # Choose the first coordinate as the next location
-                path = find_optimum_path(graph, current_location, next_location, delivery_algorithm)
-                if path:
-                    print(f"Path found from {current_location} to {next_location}: {path}")
-                    final_path.extend(path)
-                    current_location = next_location  # Update the current location
-                else:
-                    print(f"Warning: No path found from {current_location} to {next_location}.")
-                    return  # Break out of the loop if no path is found
+                # Iterate through all coordinates associated with the current location (ward)
+                path_found = False
+                for next_location in coordinates:
+                    # Check if there is a path from the current location to the next coordinate
+                    path = find_optimum_path(graph, current_location, next_location, delivery_algorithm)
+                    if path:
+                        print(f"Path found from {current_location} to {next_location}: {path}")
+                        final_path.extend(path)
+                        current_location = next_location  # Update the current location
+                        path_found = True
+                        break  # Exit the loop if a path is found
+                if not path_found:
+                    print(f"Warning: No path found from {current_location} to any coordinates of {location}.")
             else:
                 print(f"Warning: No coordinates found for location: {location}")
-                return  # Break out of the loop if no coordinates are found
         print("All delivery locations visited successfully.")
         print("The final path is: ", final_path)
         return final_path
