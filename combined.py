@@ -186,16 +186,17 @@ def main():
     # Assuming your graph data is defined as a list of lists
     for row_index, row in enumerate(matrix):
         for col_index, cell_value in enumerate(row):
-            if cell_value in [-1121, -121, -21, -2121, 0, -12, -122, -212, -6, 3, 4, 5, 7, 8, 10, 11, 12, 13]:
+            if cell_value in [-1121, -121, -21, -2121, 0, -12, -122, -212, -6, 3, 4, 5, 7, 8, 10, 11, 12, 13, 1] and (obstacle is None or (row_index, col_index) != obstacle):
                 graph.add_node((row_index, col_index))
-    
+
                 # Add edges for adjacent cells (assuming 4-directional movement)
                 for dr, dc in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
                     new_row = row_index + dr
                     new_col = col_index + dc
                     # Check if the new cell is within bounds and is not an obstacle or is not equal to the obstacle coordinate if defined
-                    if 0 <= new_row < len(matrix) and 0 <= new_col < len(matrix[0]) and matrix[new_row][new_col] in [-1121, -121, -21, -2121, 0, -12, -122, -212, -6, 3, 4, 5, 7, 8, 10, 11, 12, 13]:
-                        graph.add_edge((row_index, col_index), (new_row, new_col), 1)  # Assuming uniform weight for edges
+                    if 0 <= new_row < len(matrix) and 0 <= new_col < len(matrix[0]) and (obstacle is None or (new_row, new_col) != obstacle):
+                        if matrix[new_row][new_col] != -1:
+                            graph.add_edge((row_index, col_index), (new_row, new_col), 1)  # Assuming uniform weight for edges
 
 
     ward_priorities = {
