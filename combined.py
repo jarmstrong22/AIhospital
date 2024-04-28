@@ -183,21 +183,29 @@ def main():
 
     for row_index, row in enumerate(matrix):
         for col_index, cell_value in enumerate(row):
-            if cell_value != -1 and (obstacle is None or (row_index, col_index) != obstacle):
+            if cell_value in valid_values:
                 graph.add_node((row_index, col_index))
+                print(cell_value)
 
-                # Add edges for adjacent cells (assuming 4-directional movement)
                 for dr, dc in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
                     new_row = row_index + dr
                     new_col = col_index + dc
                     # Check if the new cell is within bounds and is not an obstacle or is not equal to the obstacle coordinate if defined
-                    if 0 <= new_row < len(matrix) and 0 <= new_col < len(matrix[0]) and (obstacle is None or (new_row, new_col) != obstacle):
+                    if 0 <= new_row < len(matrix) and 0 <= new_col < len(matrix[0]):
                         neighbor_value = matrix[new_row][new_col]
-                        if neighbor_value in valid_values:
-                            graph.add_edge((row_index, col_index), (new_row, new_col), 1)  # Assuming uniform weight for edges
-        
+                        # Check if the neighbor is not an obstacle and is in valid_values
+                        if neighbor_value != -1 and neighbor_value in valid_values:
+                            graph.add_edge((row_index, col_index), (new_row, new_col), 1)
+
+                        
     
     
+    node = (9, 4)
+    print("Node:", node)
+    print("Connections:")
+    for neighbor, weight in graph.get_neighbors(node):
+        print(f"  Neighbor: {neighbor}, Weight: {weight}")
+
     ward_priorities = {
         'ICU': 5, 'ER': 5, 'Oncology': 5, 'Burn Ward': 5,
         'Surgical Ward': 4, 'Maternity Ward': 4,
@@ -428,4 +436,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
