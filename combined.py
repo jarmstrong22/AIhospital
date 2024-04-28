@@ -20,11 +20,13 @@ class Graph:
         if node not in self.edges:
             self.edges[node] = []
     
-    def add_edge(self, from_node, to_node, weight):
-        self.add_node(from_node)
-        self.add_node(to_node)
-        self.edges[from_node].append((to_node, weight))
-        self.edges[to_node].append((from_node, weight))  # Assuming bidirectional edges
+    def get_neighbors(self, node):
+        neighbors = []
+        for neighbor, weight in self.edges[node]:
+            # Check if the edge (node, neighbor) exists in the graph
+            if (node, neighbor) in self.edges or (neighbor, node) in self.edges:
+                neighbors.append((neighbor, weight))
+        return neighbors
     
     def get_neighbors(self, node):
         neighbors = []
