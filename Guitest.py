@@ -96,6 +96,39 @@ class MazeGame:
                 self.canvas.create_line(y1 * self.cell_size + self.cell_size / 2, x1 * self.cell_size + self.cell_size / 2,
                                         y2 * self.cell_size + self.cell_size / 2, x2 * self.cell_size + self.cell_size / 2,
                                         fill='black', width=2)
+    
+    ############################################################
+    #### This is for the GUI part. No need to modify this unless
+    #### screen changes are needed.
+    ############################################################
+    def move_agent(self, event):
+    
+        #### Move right, if possible
+        if event.keysym == 'Right' and self.agent_pos[1] + 1 < self.cols and not self.cells[self.agent_pos[0]][self.agent_pos[1] + 1].is_wall:
+            self.agent_pos = (self.agent_pos[0], self.agent_pos[1] + 1)
+
+
+        #### Move Left, if possible            
+        elif event.keysym == 'Left' and self.agent_pos[1] - 1 >= 0 and not self.cells[self.agent_pos[0]][self.agent_pos[1] - 1].is_wall:
+            self.agent_pos = (self.agent_pos[0], self.agent_pos[1] - 1)
+        
+        #### Move Down, if possible
+        elif event.keysym == 'Down' and self.agent_pos[0] + 1 < self.rows and not self.cells[self.agent_pos[0] + 1][self.agent_pos[1]].is_wall:
+            self.agent_pos = (self.agent_pos[0] + 1, self.agent_pos[1])
+   
+        #### Move Up, if possible   
+        elif event.keysym == 'Up' and self.agent_pos[0] - 1 >= 0 and not self.cells[self.agent_pos[0] - 1][self.agent_pos[1]].is_wall:
+            self.agent_pos = (self.agent_pos[0] - 1, self.agent_pos[1])
+
+        #### Erase agent from the previous cell at time t
+        self.canvas.delete("agent")
+
+        
+        ### Redraw the agent in color navy in the new cell position at time t+1
+        self.canvas.create_rectangle(self.agent_pos[1] * self.cell_size, self.agent_pos[0] * self.cell_size, 
+                                    (self.agent_pos[1] + 1) * self.cell_size, (self.agent_pos[0] + 1) * self.cell_size, 
+                                    fill='navy', tags="agent")
+
 
 maze = [
         [0, -1, 1, 1, 1, 1, 1, 1, 1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -140,5 +173,6 @@ root = tk.Tk()
 root.title("Maze")
 
 game = MazeGame(root, maze, path)
+root.bind("<KeyPress>", game.move_agent)
 
 root.mainloop()
