@@ -20,13 +20,14 @@ class Graph:
         if node not in self.edges:
             self.edges[node] = []
     
-    def get_neighbors(self, node):
-        neighbors = []
-        for neighbor, weight in self.edges[node]:
-            # Check if the edge (node, neighbor) exists in the graph
-            if (node, neighbor) in self.edges or (neighbor, node) in self.edges:
-                neighbors.append((neighbor, weight))
-        return neighbors
+    def add_edge(self, from_node, to_node, weight):
+        self.add_node(from_node)
+        self.add_node(to_node)
+        # Check if the weight is valid for movement
+        valid_weights = [-1121, -121, -21, -2121, 0, -12, -122, -212, -6, 3, 4, 5, 7, 8, 10, 11, 12, 13, 1]
+        if weight in valid_weights:
+            self.edges[from_node].append((to_node, weight))
+            self.edges[to_node].append((from_node, weight))
     
     def get_neighbors(self, node):
         neighbors = []
@@ -402,14 +403,18 @@ def main():
 
     draw_maze()
 
-    def draw_path(self):
-        if self.path:
-            for i in range(len(self.path) - 1):
-                x1, y1 = self.path[i]
-                x2, y2 = self.path[i + 1]
-                self.canvas.create_line(y1 * self.cell_size + self.cell_size / 2, x1 * self.cell_size + self.cell_size / 2,
-                                        y2 * self.cell_size + self.cell_size / 2, x2 * self.cell_size + self.cell_size / 2,
+    def draw_path():
+        if path:
+            for i in range(len(path) - 1):
+                x1, y1 = path[i]
+                x2, y2 = path[i + 1]
+                canvas.create_line(y1 * cell_size + cell_size / 2, x1 * cell_size + cell_size / 2,
+                                        y2 * cell_size + cell_size / 2, x2 * cell_size + cell_size / 2,
                                         fill='black', width=2)
+                
+    draw_path()
+    
+   
 
 
 
@@ -417,9 +422,7 @@ def main():
     
     root.title("Maze")
 
-    #game = MazeGame(root, maze, path)
-
-    #root.bind("<KeyPress>", game.move_agent)
+    
 
     root.mainloop()
 
