@@ -299,9 +299,7 @@ def main():
     root = tk.Tk()
     maze = matrix
 
-    # Create final_path list 
-    final_path = []
-    path = visit_delivery_locations(sorted_delivery_locations, ward_coordinate_map, start_location, final_path )
+    
     
     rows = len(maze)
     cols = len(maze[0])
@@ -339,6 +337,11 @@ def main():
             print("All delivery locations visited successfully.")
         print("The final path is: ", final_path)
         return final_path
+
+
+    # Create final_path list 
+    final_path = []
+    path = visit_delivery_locations(sorted_delivery_locations, ward_coordinate_map, start_location, final_path )
    
    
     
