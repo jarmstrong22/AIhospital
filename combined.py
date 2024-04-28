@@ -23,16 +23,13 @@ class Graph:
     def add_edge(self, from_node, to_node, weight):
         self.add_node(from_node)
         self.add_node(to_node)
-        # Check if the weight is valid for movement
-        valid_weights = [-1121, -121, -21, -2121, 0, -12, -122, -212, -6, 3, 4, 5, 7, 8, 10, 11, 12, 13, 1]
-        if weight in valid_weights:
-            self.edges[from_node].append((to_node, weight))
-            self.edges[to_node].append((from_node, weight))
+        self.edges[from_node].append((to_node, weight))
+        self.edges[to_node].append((from_node, weight))  # Assuming bidirectional edges
     
     def get_neighbors(self, node):
         neighbors = []
         for neighbor, weight in self.edges[node]:
-            if weight in [-1121,-121,-21,-2121,0,-12,-122,-212,-6,3,4,5,7,8,10,11,12,13,1]:
+            if weight != -1:
                 neighbors.append((neighbor, weight))
         return neighbors
 
@@ -182,23 +179,21 @@ def main():
         [0, -1, 3, 3, 3, 12, 12, 12, 12, 12, 12, 12, 12, 12, 10, 10, 11, 11, 11, 10, 10, 10, 10, -1, 0]
     ]
     graph = Graph()
+    valid_values = [-1121, -121, -21, -2121, 0, -12, -122, -212, -6, 3, 4, 5, 7, 8, 10, 11, 12, 13, 1]
 
     for row_index, row in enumerate(matrix):
-            for col_index, cell_value in enumerate(row):
-                # Check if the cell value is one of the allowed values
-                if cell_value in [-1121, -121, -21, -2121, 0, -12, -122, -212, -6, 3, 4, 5, 7, 8, 10, 11, 12, 13, 1]:
-                    graph.add_node((row_index, col_index))
-    
-                    # Add edges for adjacent cells (assuming 4-directional movement)
-                    for dr, dc in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
-                        new_row = row_index + dr
-                        new_col = col_index + dc
-                        # Check if the new cell is within bounds and is not an obstacle or is not equal to the obstacle coordinate if defined
-                        if 0 <= new_row < len(matrix) and 0 <= new_col < len(matrix[0]) and (obstacle is None or (new_row, new_col) != obstacle):
-                            # Check if the value of the new cell is one of the allowed values
-                            if matrix[new_row][new_col] in [-1121, -121, -21, -2121, 0, -12, -122, -212, -6, 3, 4, 5, 7, 8, 10, 11, 12, 13, 1]:
-                                graph.add_edge((row_index, col_index), (new_row, new_col), 1)  # Assuming uniform weight for edges
+        for col_index, cell_value in enumerate(row):
+            if cell_value != -1 and (obstacle is None or (row_index, col_index) != obstacle):
+                graph.add_node((row_index, col_index))
 
+                # Add edges for adjacent cells (assuming 4-directional movement)
+                for dr, dc in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
+                    new_row = row_index + dr
+                    new_col = col_index + dc
+                    # Check if the new cell is within bounds and is not an obstacle or is not equal to the obstacle coordinate if defined
+                    if 0 <= new_row < len(matrix) and 0 <= new_col < len(matrix[0]) and (obstacle is None or (new_row, new_col) != obstacle):
+                        if matrix[new_row][new_col] in valid_values:
+                            graph.add_edge((row_index, col_index), (new_row, new_col), 1)  # Assuming uniform weight for edges
 
 
     ward_priorities = {
@@ -431,3 +426,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
