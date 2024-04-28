@@ -77,3 +77,11 @@ def main():
                     if 0 <= new_row < len(matrix) and 0 <= new_col < len(matrix[0]) and (obstacle is None or (new_row, new_col) != obstacle):
                         if matrix[new_row][new_col] in valid_values:
                             graph.add_edge((row_index, col_index), (new_row, new_col), 1)
+
+    
+    # Assuming graph is already created and populated
+    node = (9, 4)
+    print("Node:", node)
+    print("Connections:")
+    for neighbor, weight in graph.get_neighbors(node):
+        print(f"  Neighbor: {neighbor}, Weight: {weight}")
