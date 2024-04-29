@@ -200,11 +200,7 @@ def main():
                         
     
     
-    node = (9, 4)
-    print("Node:", node)
-    print("Connections:")
-    for neighbor, weight in graph.get_neighbors(node):
-        print(f"  Neighbor: {neighbor}, Weight: {weight}")
+    
 
     ward_priorities = {
         'ICU': 5, 'ER': 5, 'Oncology': 5, 'Burn Ward': 5,
@@ -311,7 +307,6 @@ def main():
 
     deliveries = []
     def visit_delivery_locations(sorted_delivery_locations, ward_coordinate_map, current_location, final_path):
-        delivery_count = 0
         for location in sorted_delivery_locations:
             coordinates = ward_coordinate_map.get(location)
             if coordinates:
@@ -326,8 +321,7 @@ def main():
                         current_location = next_location  # Update the current location
                         path_found = True
                         x, y = current_location
-                        deliveries.extend(current_location)
-                        
+                        deliveries.append(current_location)
                         break  # Exit the loop if a path is found
                 if not path_found:
                     print(f"Warning: No path found from {current_location} to any coordinates of {location}.")
@@ -338,7 +332,7 @@ def main():
         print("The final path is: ", final_path)
         return final_path
     
-    print("THE LAST COORDIANTES ARE: ", deliveries)
+    
    
    
     
@@ -346,6 +340,7 @@ def main():
     # Create final_path list 
     final_path = []
     path = visit_delivery_locations(sorted_delivery_locations, ward_coordinate_map, start_location, final_path )
+    
     
 
     color_mapping = {
@@ -598,6 +593,12 @@ def main():
                 canvas.create_line(y1 * cell_size + cell_size / 2, x1 * cell_size + cell_size / 2,
                                         y2 * cell_size + cell_size / 2, x2 * cell_size + cell_size / 2,
                                         fill='black', width=2)
+
+            # Draw numbers at delivery locations
+            for i, delivery_location in enumerate(deliveries):
+                x, y = delivery_location
+                canvas.create_text(y * cell_size + cell_size / 2, x * cell_size + cell_size / 2,
+                                text=str(i + 1), fill='black', font=('Arial', 10, 'bold'))
                 
     draw_path()
     
