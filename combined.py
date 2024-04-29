@@ -157,21 +157,21 @@ def main():
         [0, -1, 1, -1121, -121, -121, -2121, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, 0, 0],
         [0, -1, 1, -21, 1, 1, -21, 1, 2, 2, 2, 2, 2, -2, 2, 2, 2, 2, 2, -1, 0, 0, 0, 0, 0],
         [0, -1, 1, 0, 1, 1, -21, 1, 1, 1, 2, 2, 2, -2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0],
-        [0, -1, 0, 0, 0, -12, -12, -12, -12, -12, -12, -12, -12, 2, -12, -12, -12, -12, -12, 0, -1, -1, -1, -1, -1],
+        [0, -1, 0, 0, 0, -12, -1200, -12, -120, -120, -120, -12, -12, 2, -12, -12, -12, -12, -12, 0, -1, -1, -1, 0, -1],
         [-1, -1, 0, 0, 3, 2, 2, 2, -212, 2, -122, 2, 2, -2, 2, 2, 2, 2, 2, 0, 4, 4, 4, -7, 7],
         [-1, 0, 0, 0, 3, 2, 2, 2, -212, 2, -122, 2, 2, -2, 2, 2, 2, 2, 3, 0, 4, 4, 4, 7, 7],
         [-1, 0, 0, 0, 0, 2, 2, 2, -212, 2, -122, 2, 2, -2, 2, 2, 2, 2, 3, 0, 4, 4, 4, 7, 7],
         [-1, 0, 0, 0, 0, 2, 2, 2, -212, 2, -122, 2, 2, -2, 4, 4, 3, 3, 3, 0, 4, 4, 4, 7, 7],
-        [-1, 0, 0, 0, 0, 0, 0, -12, -12, -12, -12, -12, -12, -2, 4, 4, 3, 3, 3, 0, -4, -44, 4, 7, 7],
+        [-1, 0, 0, 0, 0, 0, 0, -12, -1200, -12000, -1200, -12, -12, -2, 4, 4, 3, 3, 3, 0, -4, -44, 4, 7, 7],
         [-1, 0, 0, 5, -5, 5, 2, 2, 2, -6, 2, 2, 2, -2, 4, 4, 5, 4, -444, 0, 8, -7, 7, 7, 7],
         [-1, 0, 0, 5, -5, 5, 2, 2, 2, -6, 2, 2, 2, -2, 4, 4, 5, 4, 4, 0, 8, 7, 7, 7, 7],
-        [-1, 0, 0, 5, 5, -55, -62, -61, -61, -66, 6, 2, 2, -2, 3, 3, 5, 5, 5, 0, 8, 8, 8, 8, 8],
+        [-1, 0, 0, 5, -555, -55, -62, -61, -61, -66, 6, 2, 2, -2, 3, 3, 5, 5, 5, 0, 8, 8, 8, 8, 8],
         [-1, 0, 0, 5, 5, -5, -6, 6, 6, -6, 2, 2, 2, -2, 3, -3, -511, 5, 5, 0, 8, 8, 8, 8, 8],
         [-1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -8, -8, -8, -88, 8],
         [0, -1, 0, 0, 5, -5, -7, 7, -7, 13, -13, -113, 13, 0, 10, 10, 10, 5, -5, 5, 5, 5, 5, -1, -1],
         [0, -1, 0, 0, 5, -5, 5, 7, 7, 13, 13, 13, 13, 0, 10, 10, 10, 5, -5, 5, 5, 5, 5, -1, 0],
         [0, -1, 0, 0, 5, -5, 5, 12, 13, 13, 13, 13, 12, 0, 10, 10, 10, 5, -5, 5, 5, 5, 5, -1, 0],
-        [0, -1, 0, 0, 5, -5, 5, -22222, -112, -112, -112, -2222, 12, 0, 10, 10, 10, 5, -55, 5, 5, 5, 5, -1, 0],
+        [0, -1, 0, 0, 5, -5, 5, -22222, -112, -112, -112, -2222, 12, 0, 10, 10, 10, 5, -5555, 5, 5, 5, 5, -1, 0],
         [0, -1, 0, 0, -51, -515, 12, -1222, 12, 12, 12, -2212, 12, 0, 10, 10, 10, 10, 10, 10, 10, 10, 10, -1, 0],
         [0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -10, -100, 11, 11, 11, 10, 10, 10, 10, -1, 0],
         [0, -1, 0, 5, 5, 12, 12, 12, 12, 12, 12, 12, 12, 12, 10, 10, 11, 11, 11, 10, 10, 10, 10,-1, 0],
@@ -179,7 +179,7 @@ def main():
         [0, -1, 3, -3, 3, 12, 12, 12, 12, 12, 12, 12, 12, 12, 10, 10, 11, 11, 11, 10, 10, 10, 10, -1, 0]
     ]
     graph = Graph()
-    valid_values = [-1121, -121, -21, -2121, 0, -12, -122, -212, -6, -2, -3, -44, -444, -4,-5, -51, -515, -55, -511, -61, -61, -66, -7, -88, -8, -10, -100, -112, -2212, -1222, -2222, -22222, -13, -113]
+    valid_values = [-1121, -121, -21, -2121, 0, -12, -122, -212, -6, -2, -3, -44, -444, -4,-5, -51, -515, -55, -511, -61, -61, -66, -7, -88, -8, -10, -100, -112, -2212, -1222, -2222, -22222, -13, -113, -1200, -120, -12000, -5555]
 
     for row_index, row in enumerate(matrix):
         for col_index, cell_value in enumerate(row):
@@ -249,7 +249,7 @@ def main():
                     ward_coordinate_map['Wall'].append((i,j))
                 elif ward in [4,-4,-44,-444]:
                     ward_coordinate_map['ER'].append((i, j))
-                elif ward in [-5, -51, -515, -511, -55]:
+                elif ward in [-5, -51, -515, -511, -55, -5555, -555]:
                     ward_coordinate_map['Oncology'].append((i, j))
                 elif ward == 6 or ward == -6 or ward == -61 or ward == -62 or ward == -66:
                     ward_coordinate_map['Burn Ward'].append((i, j))
@@ -259,7 +259,7 @@ def main():
                     ward_coordinate_map['Surgical Ward'].append((i, j))
                 elif ward in [-13, 13, -113]:
                     ward_coordinate_map['Hematology'].append((i, j))
-                elif ward in [12, -112, -2212, -2222, -22222]:
+                elif ward in [12, -112, -2212, -2222, -22222, -120, -1200]:
                     ward_coordinate_map['Pediatric Ward'].append((i, j))
                 elif ward == 11:
                     ward_coordinate_map['Medical Ward'].append((i, j))
@@ -300,7 +300,6 @@ def main():
     maze = matrix
 
     
-    
     rows = len(maze)
     cols = len(maze[0])
     
@@ -310,6 +309,7 @@ def main():
     canvas = tk.Canvas(root, width=cols * cell_size, height=rows * cell_size, bg='white')
     canvas.pack()
 
+    deliveries = []
     def visit_delivery_locations(sorted_delivery_locations, ward_coordinate_map, current_location, final_path):
         delivery_count = 0
         for location in sorted_delivery_locations:
@@ -326,8 +326,8 @@ def main():
                         current_location = next_location  # Update the current location
                         path_found = True
                         x, y = current_location
-                        canvas.create_text(y * cell_size + cell_size / 2, x * cell_size + cell_size / 2,
-                                        text=str(delivery_count), fill='black', font=('Arial', 10, 'bold'))
+                        deliveries.extend(current_location)
+                        
                         break  # Exit the loop if a path is found
                 if not path_found:
                     print(f"Warning: No path found from {current_location} to any coordinates of {location}.")
@@ -337,15 +337,15 @@ def main():
             print("All delivery locations visited successfully.")
         print("The final path is: ", final_path)
         return final_path
-
-
-    # Create final_path list 
-    final_path = []
-    path = visit_delivery_locations(sorted_delivery_locations, ward_coordinate_map, start_location, final_path )
+    
+    print("THE LAST COORDIANTES ARE: ", deliveries)
    
    
     
 
+    # Create final_path list 
+    final_path = []
+    path = visit_delivery_locations(sorted_delivery_locations, ward_coordinate_map, start_location, final_path )
     
 
     color_mapping = {
@@ -359,6 +359,9 @@ def main():
         -2: '#FF0000',      # Red for cell value -2
         -12: '#FF0000',     # Red up and down wall
         -122: '#FF0000',     # Red up and down wall
+        -120: '#FF0000', 
+        -1200: '#FF0000', 
+        -12000: '#FF0000', 
         -212: '#FF0000',     # Red up and down wall
         2: '#FF0000',       # Red
         3: '#B19CD9',       # Light Purple
@@ -371,6 +374,8 @@ def main():
         -5: '#90EE90',
         -51: '#90EE90',
         -515: '#90EE90',
+        -555: '#90EE90',
+        -5555: '#90EE90',
         -511: '#90EE90',
         -55: '#90EE90',
         6: '#6A0DAD',       # Dark Purple
@@ -444,11 +449,6 @@ def main():
                 if maze[x][y] == -21:
                     draw_wall_right(x,y)
                     draw_wall_left(x,y)
-                    draw_wall_bottom(x,y)
-                
-                if maze[x][y] == -21:
-                    draw_wall_right(x,y)
-                    draw_wall_left(x,y)
                 
                 if maze[x][y] == -6:
                     draw_wall_right(x,y)
@@ -461,6 +461,12 @@ def main():
                 if maze[x][y] == -12:
                     draw_wall_bottom(x,y)
                     draw_wall_top(x,y)
+                
+                if maze[x][y] == -120:
+                    draw_wall_top(x,y)
+                
+                if maze[x][y] == -1200:
+                    draw_wall_bottom(x,y)
                 
                 if maze[x][y] == -61:
                     draw_wall_bottom(x,y)
@@ -487,20 +493,25 @@ def main():
                 if maze[x][y] == -122:
                     draw_wall_right(x,y)
 
-                if maze[x][y] == -55:
-                    draw_wall_top(x,y)
-                    draw_wall_right(x,y)
-                
                 if maze[x][y] == -5:
                     draw_wall_right(x,y)
                     draw_wall_left(x,y)
 
                 if maze[x][y] == -55:
                     draw_wall_right(x,y)
-                    draw_wall_left(x,y)
+                    draw_wall_top(x,y)
+
+                
+                if maze[x][y] == -5555:
+                    draw_wall_top(x,y)
+
                 
                 if maze[x][y] == -51:
-                    draw_wall_right(x,y)
+                    draw_wall_top(x,y)
+                    draw_wall_bottom(x,y)
+                
+                if maze[x][y] == -555:
+                    draw_wall_bottom(x,y)
                     draw_wall_left(x,y)
 
                 if maze[x][y] == -511:
@@ -508,6 +519,10 @@ def main():
                     draw_wall_left(x,y)
                     draw_wall_top(x,y)
                 
+                if maze[x][y] == -515:
+                    draw_wall_right(x,y)
+                    draw_wall_bottom(x,y)
+
                 if maze[x][y] == -3:
                     draw_wall_right(x,y)
                     draw_wall_left(x,y)
@@ -529,10 +544,6 @@ def main():
                 
                 if maze[x][y] == -2212:
                     draw_wall_right(x,y)
-
-                if maze[x][y] == -515:
-                    draw_wall_right(x,y)
-                    draw_wall_bottom(x,y)
 
                 if maze[x][y] == -7:
                     draw_wall_right(x,y)
