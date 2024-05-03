@@ -1,0 +1,38 @@
+Delivery algorithm: A*
+Start location: 0,21
+Delivery locations: Medical Ward, ICU, ER, Oncology
+//Without Obstacle
+
+Delivery algorithm: A*
+Start location: 0,21
+Delivery locations: Medical Ward ,ICU, ER, Oncology
+Obstacle: 21,14
+//#Obstacle 1
+
+Delivery algorithm: Dijkstra
+Start location: 12,13
+Delivery locations: General Ward, Admissions, Pediatric Ward
+
+Delivery algorithm: Dijkstra
+Start location: 12,13
+Delivery locations: General Ward, Admissions, Pediatric Ward
+Obstacle: 15,2
+//Went around
+
+Delivery algorithm: A*
+Start location: 2,3
+Delivery locations: Admissions, Isolation Ward, Hematology, Burn Ward
+
+Delivery algorithm: Dijkstra
+Start location: 2,3
+Delivery locations: Isolation Ward, Admissions, Burn Ward, Hematology
+
+Delivery algorithm: A*
+Start location: 5,5
+Delivery locations: Maternity Ward, Surgical Ward
+//wihtout obstacle
+
+Delivery algorithm: A*
+Start location: 5,5
+Delivery locations: Maternity Ward, Surgical Ward
+Obstacle: 5,6
