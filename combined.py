@@ -157,35 +157,37 @@ def main():
         [0, -1, 1, -1121, -121, -121, -2121, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 0, 0, 0],
         [0, -1, 1, -21, 1, 1, -21, 1, 2, 2, 2, 2, 2, -2, 2, 2, 2, 2, 2, -1, 0, 0, 0, 0, 0],
         [0, -1, 1, 0, 1, 1, -21, 1, 1, 1, 2, 2, 2, -2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0],
-        [0, -1, 0, 0, 0, -12, -1200, -12, -120, -120, -120, -12, -12, 2, -12, -12, -12, -12, -12, 0, -1, -1, -1, 0, -1],
+        [0, -1, 0, 0, 0, -12, -1200, -12, -120, -120, -120, -12, -12, -2020, -12, -12, -12, -12, -12, 0, -1, -1, -1, 0, -1],
         [-1, -1, 0, 0, 3, 2, 2, 2, -212, 2, -122, 2, 2, -2, 2, 2, 2, 2, 2, 0, 4, 4, 4, -7, 7],
         [-1, 0, 0, 0, 3, 2, 2, 2, -212, 2, -122, 2, 2, -2, 2, 2, 2, 2, 3, 0, 4, 4, 4, 7, 7],
         [-1, 0, 0, 0, 0, 2, 2, 2, -212, 2, -122, 2, 2, -2, 2, 2, 2, 2, 3, 0, 4, 4, 4, 7, 7],
         [-1, 0, 0, 0, 0, 2, 2, 2, -212, 2, -122, 2, 2, -2, 4, 4, 3, 3, 3, 0, 4, 4, 4, 7, 7],
-        [-1, 0, 0, 0, 0, 0, 0, -12, -1200, -12000, -1200, -12, -12, -2, 4, 4, 3, 3, 3, 0, -4, -44, 4, 7, 7],
+        [-1, 0, 0, 0, 0, 0, 0, -12, -1200, -12000, -1200, -12, -12, -122, 4, 4, 3, 3, 3, 0, -4, -44, 4, 7, 7],
         [-1, 0, 0, 5, -5, 5, 2, 2, 2, -6, 2, 2, 2, -2, 4, 4, 5, 4, -444, 0, 8, -7, 7, 7, 7],
         [-1, 0, 0, 5, -5, 5, 2, 2, 2, -6, 2, 2, 2, -2, 4, 4, 5, 4, 4, 0, 8, 7, 7, 7, 7],
         [-1, 0, 0, 5, -555, -55, -62, -61, -61, -66, 6, 2, 2, -2, 3, 3, 5, 5, 5, 0, 8, 8, 8, 8, 8],
-        [-1, 0, 0, 5, 5, -5, -6, 6, 6, -6, 2, 2, 2, -2, 3, -3, -511, 5, 5, 0, 8, 8, 8, 8, 8],
+        [-1, 0, 0, 5, 5, -5, -6, 6, 6, -6, 2, 2, 2, -2, 3, -3, 5, -511, 5, 0, 8, 8, 8, 8, 8],
         [-1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -8, -8, -8, -88, 8],
         [0, -1, 0, 0, 5, -5, -7, 7, -7, 13, -13, -113, 13, 0, 10, 10, 10, 5, -5, 5, 5, 5, 5, -1, -1],
         [0, -1, 0, 0, 5, -5, 5, 7, 7, 13, 13, 13, 13, 0, 10, 10, 10, 5, -5, 5, 5, 5, 5, -1, 0],
         [0, -1, 0, 0, 5, -5, 5, 12, 13, 13, 13, 13, 12, 0, 10, 10, 10, 5, -5, 5, 5, 5, 5, -1, 0],
-        [0, -1, 0, 0, 5, -5, 5, -22222, -112, -112, -112, -2222, 12, 0, 10, 10, 10, 5, -5555, 5, 5, 5, 5, -1, 0],
-        [0, -1, 0, 0, -51, -515, 12, -1222, 12, 12, 12, -2212, 12, 0, 10, 10, 10, 10, 10, 10, 10, 10, 10, -1, 0],
-        [0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -10, -100, 11, 11, 11, 10, 10, 10, 10, -1, 0],
-        [0, -1, 0, 5, 5, 12, 12, 12, 12, 12, 12, 12, 12, 12, 10, 10, 11, 11, 11, 10, 10, 10, 10,-1, 0],
+        [0, -1, 0, 0, -51, -515, 5, -22222, -112, -112, -112, -2222, 12, 0, 10, 10, 10, 5, -5555, 5, 5, 5, 5, -1, 0],
+        [0, -1, 0, 0, 5, 5, 12, -1222, 12, 12, 12, -2212, 12, 0, 10, 10, 10, 10, 10, 10, 10, 10, 10, -1, 0],
+        [0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -10, -10, -11, -111, 11, 10, 10, 10, 10, -1, 0],
+        [0, -1, 0, 5, 5, 12, 12, 12, 12, 12, 12, 12, 12, 12, 10, 10, 11, -1111, 11, 10, 10, 10, 10,-1, 0],
         [0, -1, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12, 12, 12, 10, 10, 11, 11, 11, 10, 10, 10, 10, -1, 0],
         [0, -1, 3, -3, 3, 12, 12, 12, 12, 12, 12, 12, 12, 12, 10, 10, 11, 11, 11, 10, 10, 10, 10, -1, 0]
     ]
     graph = Graph()
-    valid_values = [-1121, -121, -21, -2121, 0, -12, -122, -212, -6, -2, -3, -44, -444, -4,-5, -51, -515, -55, -511, -61, -61, -66, -7, -88, -8, -10, -100, -112, -2212, -1222, -2222, -22222, -13, -113, -1200, -120, -12000, -5555]
+    valid_values = [-1121, -121, -21, -2121, 0, -12, -122, -212, -6, -2, -3, -44, -444, -4,-5, -51, -515, -55, -511, -61, -61, -66, -7, -88, -8, -10, -100, -112, -2212, -1222, -2222, -22222, -13, -113, -1200, -120, -12000, -5555, -2020, 11, -111, -11, -1111]
 
     for row_index, row in enumerate(matrix):
         for col_index, cell_value in enumerate(row):
             if cell_value in valid_values:
+                if (row_index, col_index) == obstacle: 
+                    continue
                 graph.add_node((row_index, col_index))
-                print(cell_value)
+                
 
                 for dr, dc in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
                     new_row = row_index + dr
@@ -249,17 +251,17 @@ def main():
                     ward_coordinate_map['Oncology'].append((i, j))
                 elif ward == 6 or ward == -6 or ward == -61 or ward == -62 or ward == -66:
                     ward_coordinate_map['Burn Ward'].append((i, j))
-                elif ward == 1:
+                elif ward in [1, -1121, -121, -2121, -21]:
                     ward_coordinate_map['Maternity Ward'].append((i, j))
                 elif ward in [10, -10, -100]:
                     ward_coordinate_map['Surgical Ward'].append((i, j))
                 elif ward in [-13, 13, -113]:
                     ward_coordinate_map['Hematology'].append((i, j))
-                elif ward in [12, -112, -2212, -2222, -22222, -120, -1200]:
+                elif ward in [12, -112, -2212, -2222, -22222]:
                     ward_coordinate_map['Pediatric Ward'].append((i, j))
-                elif ward == 11:
+                elif ward in [11, -11, -111, -1111]:
                     ward_coordinate_map['Medical Ward'].append((i, j))
-                elif ward == 2 or ward == -12 or ward == -212 or ward == -112:
+                elif ward in [2, -12, -212,-112, -120, -1200, -2020]:
                     ward_coordinate_map['General Ward'].append((i, j))
                 elif ward in [7,-7]:
                     ward_coordinate_map['Admissions'].append((i, j))
@@ -270,7 +272,7 @@ def main():
     
     # Create ward_coordinate_map
     ward_coordinate_map = create_ward_coordinate_map(matrix)
-    print(ward_coordinate_map)
+    
 
     # Create a list of tuples containing location name and priority
     location_priority_pairs = [(location, ward_priorities.get(location, 0)) for location in delivery_locations]
@@ -307,6 +309,7 @@ def main():
 
     deliveries = []
     def visit_delivery_locations(sorted_delivery_locations, ward_coordinate_map, current_location, final_path):
+        visited = True
         for location in sorted_delivery_locations:
             coordinates = ward_coordinate_map.get(location)
             if coordinates:
@@ -325,11 +328,15 @@ def main():
                         break  # Exit the loop if a path is found
                 if not path_found:
                     print(f"Warning: No path found from {current_location} to any coordinates of {location}.")
+                    visited = False
             else:
                 print(f"Warning: No coordinates found for location: {location}")
-        if (final_path):
-            print("All delivery locations visited successfully.")
-        print("The final path is: ", final_path)
+        if (final_path == []):
+            print("None were found or visited")
+        elif (visited == False):
+            print("some delivery locations visited successfully.")
+        elif (visited == True):
+            print("The final path is: ", final_path)
         return final_path
     
     
@@ -357,6 +364,7 @@ def main():
         -120: '#FF0000', 
         -1200: '#FF0000', 
         -12000: '#FF0000', 
+        -2020: '#FF0000', 
         -212: '#FF0000',     # Red up and down wall
         2: '#FF0000',       # Red
         3: '#B19CD9',       # Light Purple
@@ -386,7 +394,10 @@ def main():
         10: '#FFC0CB',      # Pink
         -10: '#FFC0CB', 
         -100: '#FFC0CB', 
-        11: '#98FB98',      # Really Light Green
+        11: '#008080',      # Really Light Green
+        -11: '#008080', 
+        -111: '#008080', 
+        -1111: '#008080', 
         -112: '#4B5320',      # Army Green
         -2212: '#4B5320', 
         -1222: '#4B5320', 
@@ -583,6 +594,19 @@ def main():
                     draw_wall_bottom(x,y)
                     draw_wall_right(x,y)
                     draw_wall_top(x,y)
+
+                if maze[x][y] == -11:
+                    draw_wall_top(x,y)
+                    draw_wall_bottom(x,y)
+                
+                if maze[x][y] == -111:
+                    draw_wall_right(x,y)
+                    draw_wall_top(x,y)
+                
+                if maze[x][y] == -1111:
+                    draw_wall_right(x,y)
+                    draw_wall_left(x,y)
+                    draw_wall_bottom(x,y)
     draw_maze()
 
     def draw_path():
@@ -594,6 +618,19 @@ def main():
                                         y2 * cell_size + cell_size / 2, x2 * cell_size + cell_size / 2,
                                         fill='black', width=2)
 
+            #mark start location
+            start_x, start_y = start_location
+            canvas.create_text(start_y * cell_size + cell_size / 2, start_x * cell_size + cell_size / 2,
+                                text='S', fill='black', font=('Arial', 10, 'bold'))
+            
+
+            #mark obstacles
+            if obstacle:
+
+                obstacle_x, obstacle_y = obstacle
+                canvas.create_text(obstacle_y * cell_size + cell_size / 2, obstacle_x * cell_size + cell_size / 2,
+                                    text='X', fill='black', font=('Arial', 10, 'bold'))
+                
             # Draw numbers at delivery locations
             for i, delivery_location in enumerate(deliveries):
                 x, y = delivery_location
